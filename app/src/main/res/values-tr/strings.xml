@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="label_lag_config">ConfigActivity in TR</string>
+    <string name="test_text">这句本来是土耳其语.</string>
+</resources>

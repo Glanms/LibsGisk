@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="通用语言适配"
+        android:padding="5dp"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/test_area"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#95d2b0"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="默认文本" />
+
+        <ImageView
+            android:id="@+id/iv_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_to_cn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="中文" />
+
+        <Button
+            android:id="@+id/btn_to_en"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="英文" />
+
+        <Button
+            android:id="@+id/btn_to_tr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="土耳其语" />
+    </LinearLayout>
+</LinearLayout>

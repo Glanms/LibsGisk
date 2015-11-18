@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="label_lag_config">ConfigActivity in EN</string>
+    <string name="test_text">This sentence is written in English.</string>
+</resources>
