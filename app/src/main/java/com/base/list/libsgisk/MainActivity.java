@@ -18,19 +18,20 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.base.list.libsgisk.activity.LanguageConfigActivity;
-import com.base.list.libsgisk.tools.CommonUtils;
+import com.base.list.libsgisk.entity.Constant;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button btn1;
+    public static final String COUNTRY_ID = "country_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +56,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_yuyan:
-                CommonUtils.turnToActivity(this, LanguageConfigActivity.class);
+//                CommonUtils.turnToActivity(this, LanguageConfigActivity.class);
+                Intent _intent = new Intent(this, LanguageConfigActivity.class);
+                _intent.putExtra("country_id",1);
+                startActivityForResult(_intent,200);
                 break;
 
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        int country = data.getIntExtra(COUNTRY_ID,0);
+        if(requestCode == 200){
+            if(resultCode == RESULT_OK && country ==100){
 
+                setAppIcon(true);
+            }else {
+                setAppIcon(false);
+            }
+        }
+    }
 
     //新增快捷方式
     private void shortcutAdd(String name, int number) {
@@ -132,6 +147,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
+    /**
+     * 动态设置应用图标
+     * @param iconId true 为中国  false 为英国  //todo 暂且定为boolean值，后来换为int值
+     */
     private void setAppIcon(boolean iconId){
         Context ctx = getApplicationContext();
         PackageManager pm = getPackageManager();
@@ -139,13 +158,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .getSystemService(Activity.ACTIVITY_SERVICE);
         Log.d("TAG:", "PackageName--->" + getComponentName());
         if(iconId) {
-            if ("com.gisk.list.myapplication.MainActivity_Version1".equals(getComponentName()
+//            if ("com.base.list.libsgisk.MainActivity_CN".equals(getComponentName()
+            if ("com.base.list.libsgisk.MainActivity".equals(getComponentName()  //这里因为是首次启动，因而getComponentName()为MainActivity
                     .getClassName())) {
+                // 对Manifest中的activity-alias值分别设置其enable属性
                 pm.setComponentEnabledSetting(getComponentName(),
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                         PackageManager.DONT_KILL_APP);
                 pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
-                                "com.gisk.list.myapplication.MainActivity_Version2"),
+                                "com.base.list.libsgisk.MainActivity_EN"),
                         PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                         PackageManager.DONT_KILL_APP);
             } else {
@@ -153,12 +174,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                         PackageManager.DONT_KILL_APP);
                 pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
-                                "com.gisk.list.myapplication.MainActivity_Version1"),
+                                "com.base.list.libsgisk.MainActivity_CN"),
                         PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                         PackageManager.DONT_KILL_APP);
+                Log.e("MainActvity", "设置错了 CN");
             }
         }else {
-            Log.d("TAG","类型 2");
+//            if ("com.base.list.libsgisk.MainActivity_EN".equals(getComponentName()
+            if ("com.base.list.libsgisk.MainActivity".equals(getComponentName()  // 这里同上
+                    .getClassName())) {
+                pm.setComponentEnabledSetting(getComponentName(),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);
+                pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
+                                "com.base.list.libsgisk.MainActivity_CN"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                        PackageManager.DONT_KILL_APP);
+            }else {
+                pm.setComponentEnabledSetting(getComponentName(),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);
+                pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
+                                "com.base.list.libsgisk.MainActivity_EN"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                        PackageManager.DONT_KILL_APP);
+                Log.e("MainActvity", "设置错了 EN");
+            }
         }
 
         // Find launcher and kill it
