@@ -7,7 +7,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,21 +21,31 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import com.base.list.libsgisk.activity.LanguageConfigActivity;
 import com.base.list.libsgisk.entity.Constant;
+import com.base.list.libsgisk.tools.CommonUtils;
+import com.base.list.libsgisk.view.activity.LanguageConfigActivity;
 
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btn1;
     public static final String COUNTRY_ID = "country_id";
+    private TextView tvMain;
+    private ListView lvMain;
+    private String[] labels  = null;
+    private ArrayAdapter<String> arrayAdapter = null;
+
+    private Bundle s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        s = savedInstanceState;
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,31 +58,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setAction("Action", null).show();
             }
         });
-        btn1 = (Button)findViewById(R.id.btn_yuyan);
+        lvMain = (ListView) findViewById(R.id.list_main);
+        initData();
+
+        tvMain = (TextView) findViewById(R.id.main_test);
+        btn1 = (Button) findViewById(R.id.btn_yuyan);
         btn1.setOnClickListener(this);
+    }
+
+    private void initData(){
+        labels = getResources().getStringArray(R.array.labels_main);
+       arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_main_item,
+                R.id.item_main_label, labels);
+        lvMain.setAdapter(arrayAdapter);
+        lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        CommonUtils.turnToActivity(MainActivity.this,LanguageConfigActivity.class);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_yuyan:
 //                CommonUtils.turnToActivity(this, LanguageConfigActivity.class);
                 Intent _intent = new Intent(this, LanguageConfigActivity.class);
-                _intent.putExtra("country_id",1);
-                startActivityForResult(_intent,200);
+                _intent.putExtra("country_id", 1);
+                startActivityForResult(_intent, 200);
                 break;
-
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        int country = data.getIntExtra(COUNTRY_ID,0);
-        if(requestCode == 200){
-            if(resultCode == RESULT_OK && country ==100){
+        int country = data.getIntExtra(COUNTRY_ID, 0);
+        if (requestCode == 200) {
+            if (resultCode == RESULT_OK && country == 100) {
 
                 setAppIcon(true);
-            }else {
+            } else {
                 setAppIcon(false);
             }
         }
@@ -149,70 +190,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * 动态设置应用图标
+     *
      * @param iconId true 为中国  false 为英国  //todo 暂且定为boolean值，后来换为int值
      */
-    private void setAppIcon(boolean iconId){
+    private void setAppIcon(boolean iconId) {
         Context ctx = getApplicationContext();
         PackageManager pm = getPackageManager();
         ActivityManager am = (ActivityManager) ctx
                 .getSystemService(Activity.ACTIVITY_SERVICE);
         Log.d("TAG:", "PackageName--->" + getComponentName());
-        if(iconId) {
-//            if ("com.base.list.libsgisk.MainActivity_CN".equals(getComponentName()
-            if ("com.base.list.libsgisk.MainActivity".equals(getComponentName()  //这里因为是首次启动，因而getComponentName()为MainActivity
-                    .getClassName())) {
-                // 对Manifest中的activity-alias值分别设置其enable属性
-                pm.setComponentEnabledSetting(getComponentName(),
-                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                        PackageManager.DONT_KILL_APP);
-                pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
-                                "com.base.list.libsgisk.MainActivity_EN"),
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                        PackageManager.DONT_KILL_APP);
-            } else {
-                pm.setComponentEnabledSetting(getComponentName(),
-                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                        PackageManager.DONT_KILL_APP);
-                pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
-                                "com.base.list.libsgisk.MainActivity_CN"),
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                        PackageManager.DONT_KILL_APP);
-                Log.e("MainActvity", "设置错了 CN");
-            }
-        }else {
-//            if ("com.base.list.libsgisk.MainActivity_EN".equals(getComponentName()
-            if ("com.base.list.libsgisk.MainActivity".equals(getComponentName()  // 这里同上
-                    .getClassName())) {
-                pm.setComponentEnabledSetting(getComponentName(),
-                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                        PackageManager.DONT_KILL_APP);
-                pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
-                                "com.base.list.libsgisk.MainActivity_CN"),
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                        PackageManager.DONT_KILL_APP);
-            }else {
-                pm.setComponentEnabledSetting(getComponentName(),
-                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                        PackageManager.DONT_KILL_APP);
-                pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
-                                "com.base.list.libsgisk.MainActivity_EN"),
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                        PackageManager.DONT_KILL_APP);
-                Log.e("MainActvity", "设置错了 EN");
-            }
+        if (iconId) {
+
+            // 对Manifest中的activity-alias值分别设置其enable属性
+            pm.setComponentEnabledSetting(getComponentName(),
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
+                            "com.base.list.libsgisk.MainActivity_EN"),
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP);
+            Log.e("MainActivity", "设置了 CN");
+        } else {
+
+            pm.setComponentEnabledSetting(getComponentName(),
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(new ComponentName(getBaseContext(),
+                            "com.base.list.libsgisk.MainActivity_CN"),
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP);
+
+                    Log.e("MainActivity", "设置了 EN");
+
         }
 
         // Find launcher and kill it
-        Intent i = new Intent(Intent.ACTION_MAIN);
+  /*      Intent i = new Intent(Intent.ACTION_MAIN);
         i.addCategory(Intent.CATEGORY_HOME);
         i.addCategory(Intent.CATEGORY_DEFAULT);
-        List<ResolveInfo> resolves = pm.queryIntentActivities(i,0);
-        for(ResolveInfo res : resolves){
-            if(res.activityInfo != null){
+        List<ResolveInfo> resolves = pm.queryIntentActivities(i, 0);
+        for (ResolveInfo res : resolves) {
+            if (res.activityInfo != null) {
 //                am.killBackgroundProcesses(res.activityInfo.packageName);
                 am.restartPackage(res.activityInfo.packageName);
             }
-        }
+        }*/
 
 
         // Change ActionBar icon

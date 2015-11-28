@@ -28,4 +28,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="下一个Demo"/>
+    <TextView
+        android:id="@+id/main_test"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_text"/>
+
+    <ListView
+        android:id="@+id/list_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#332"
+        android:dividerHeight="0.5dp">
+
+    </ListView>
 </LinearLayout>

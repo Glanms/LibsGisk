@@ -1,9 +1,11 @@
-package com.base.list.libsgisk.activity;
+package com.base.list.libsgisk.view.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +19,7 @@ import java.util.Locale;
 /**
  * Created by Administrator on 2015/11/17.
  */
-public class LanguageConfigActivity extends AppCompatActivity implements View.OnClickListener{
+public class LanguageConfigActivity extends BaseActivity implements View.OnClickListener{
 
     private TextView tvText;
     private ImageView ivImage;
@@ -28,6 +30,7 @@ public class LanguageConfigActivity extends AppCompatActivity implements View.On
 //    private Locale locale;
     private Configuration config;
     private  Intent mIntent;
+    private Intent broadCastIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,13 @@ public class LanguageConfigActivity extends AppCompatActivity implements View.On
         ivImage.setImageResource(R.drawable.test_icon);
 
         mIntent  = getIntent();
+        SmsManager smsManager = SmsManager.getDefault();
+        BroadcastReceiver receiver  = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+            }
+        };
     }
 
     @Override

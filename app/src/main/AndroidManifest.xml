@@ -50,8 +50,11 @@
             </intent-filter>
         </activity-alias>
         <activity
-            android:name=".activity.LanguageConfigActivity"
+            android:name=".view.activity.LanguageConfigActivity"
             android:label="@string/label_lag_config"/>
+        <activity
+            android:name=".view.activity.RvDemoActivity"
+            android:label="@string/label_lag_rvdemo"/>
     </application>
 
 </manifest>

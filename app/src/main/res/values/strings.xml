@@ -5,6 +5,25 @@
     <string name="action_settings">Settings</string>
 
     <string name="label_lag_config">ConfigActivity</string>
+    <string name="label_lag_rvdemo">RecyclerViewActivity</string>
     <string name="test_text">这是原本的话.</string>
+
+    <string name="main_text">Libs List</string>
+
+    <string-array name="labels_main">
+        <item>语言切换</item>
+        <item>RecyclerView 使用</item>
+        <item>BroadcastReceiver</item>
+        <item>Service</item>
+        <item>Widget</item>
+        <item>Animation</item>
+        <item>Dialog</item>
+    </string-array>
+
+    <string-array name="labels_rv">
+        <item>RecyclerView(一)</item>
+        <item>RecyclerView(二)</item>
+        <item>RecyclerView(三)</item>
+    </string-array>
 
 </resources>

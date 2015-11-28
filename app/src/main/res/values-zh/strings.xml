@@ -3,4 +3,6 @@
 
     <string name="label_lag_config">ConfigActivity in ZH</string>
     <string name="test_text">这是一句中文.</string>
+
+    <string name="main_text">Main CN</string>
 </resources>
