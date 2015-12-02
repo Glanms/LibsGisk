@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="bg_main">#d0111112</color>
 
-    <color name="bg_item_main">#a9d9da</color>
-    <color name="text_item_main_title">#000</color>
+    <color name="bg_item_main">#988c80af</color>
+    <color name="text_item_main_title">#d81e1e1e</color>
+
+    <color name="btn_main_test_normal">#7c65b1</color>
+    <color name="btn_main_test_click">#460ec7</color>
+    <color name="text_main_btn">#e1fffafa</color>
+
+    <color name="title_main_color">#ecdd71</color>
 </resources>

@@ -4,5 +4,15 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="text_default_color">#f7f4f4</color>
+
+
     <color name="divider_grey">#893d3b3b</color>
+
+    <!--ShowcaseView相关-->
+    <color name="btn_sv_test_normal">#b67a5a</color>
+    <color name="btn_sv_test_click">#c74a06</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
 </resources>

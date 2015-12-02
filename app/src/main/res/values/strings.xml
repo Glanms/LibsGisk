@@ -10,6 +10,8 @@
 
     <string name="main_text">Libs List</string>
 
+    <string name="showcase_view_close">关闭</string>
+
     <string-array name="labels_main">
         <item>语言切换</item>
         <item>RecyclerView 使用</item>

@@ -14,6 +14,6 @@ public class CommonUtils {
     public static void turnToActivity(Activity activity,Class<? extends Activity> acticityClass){
         Intent intent = new Intent(activity,acticityClass);
         activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.slide_out_left,R.anim.slide_in_right);
+        activity.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 }

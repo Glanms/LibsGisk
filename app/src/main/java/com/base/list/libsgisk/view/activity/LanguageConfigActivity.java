@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.base.list.libsgisk.MainActivity;
 import com.base.list.libsgisk.R;
 
 import java.util.Locale;

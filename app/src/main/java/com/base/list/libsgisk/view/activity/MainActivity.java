@@ -1,4 +1,4 @@
-package com.base.list.libsgisk;
+package com.base.list.libsgisk.view.activity;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -12,12 +12,13 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,26 +28,39 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.base.list.libsgisk.R;
 import com.base.list.libsgisk.entity.Constant;
 import com.base.list.libsgisk.tools.CommonUtils;
-import com.base.list.libsgisk.view.activity.LanguageConfigActivity;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private Button btn1;
+    private Button btn2;
     public static final String COUNTRY_ID = "country_id";
     private TextView tvMain;
     private ListView lvMain;
     private String[] labels  = null;
     private ArrayAdapter<String> arrayAdapter = null;
+    private int counter = 0; //引导动画
+    private ShowcaseView showcaseView;
 
     private Bundle s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        s = savedInstanceState;
         setContentView(R.layout.activity_main);
+
+        initView();
+        initData();
+
+        btn1.setOnClickListener(this);
+    }
+
+    private void initView(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -59,11 +73,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         lvMain = (ListView) findViewById(R.id.list_main);
-        initData();
-
         tvMain = (TextView) findViewById(R.id.main_test);
         btn1 = (Button) findViewById(R.id.btn_yuyan);
-        btn1.setOnClickListener(this);
+        btn2 = (Button) findViewById(R.id.btn_next);
+
+        View v = LayoutInflater.from(this).inflate(R.layout.layout_sv_btn, showcaseView,false);
+        Button svEndBtn = (Button)v.findViewById(R.id.sv_test_btn) ;
+        // 初始化ShowcaseView
+        showcaseView = new ShowcaseView.Builder(this)
+//                .withMaterialShowcase()
+                .setTarget(new ViewTarget(toolbar))
+                .setOnClickListener(this)
+                .setStyle(R.style.CustomShowcaseTheme3)
+//                .replaceEndButton(svEndBtn)
+                .build();
+        showcaseView.setButtonText("下一步");
+        showcaseView.setContentText("ShowcaseView 引导页");
     }
 
     private void initData(){
@@ -104,6 +129,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(_intent, 200);
                 break;
         }
+        switch (counter){
+            case 0:
+                showcaseView.setShowcase(new ViewTarget(btn1), true);
+                showcaseView.setContentTitle("按钮 1");
+                showcaseView.setContentText("应用语言切换入口");
+                break;
+            case 1:
+                showcaseView.setShowcase(new ViewTarget(btn2),true);
+                showcaseView.setContentTitle("按钮 2");
+                showcaseView.setContentText("其他的Demo入口");
+                break;
+            case 2:
+                showcaseView.setTarget(Target.NONE);
+                showcaseView.setContentTitle("引导完成");
+                showcaseView.setContentText("接下来点击“关闭”按钮，开始使用吧！");
+                showcaseView.setButtonText(getString(R.string.showcase_view_close));
+                setAlpha(0.4f, btn2, btn1);
+                break;
+            case 3:
+                showcaseView.hide();
+                setAlpha(1.0f, btn2, btn1);
+                break;
+        }
+        counter ++;
     }
 
     @Override
@@ -115,6 +164,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setAppIcon(true);
             } else {
                 setAppIcon(false);
+            }
+        }
+    }
+
+    private void setAlpha(float alpha, View... views) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            for (View view : views) {
+                view.setAlpha(alpha);
             }
         }
     }
