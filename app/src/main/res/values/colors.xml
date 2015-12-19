@@ -15,4 +15,6 @@
 
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
+
+    <color name="bg_normal_title_layout">#91919c</color>
 </resources>

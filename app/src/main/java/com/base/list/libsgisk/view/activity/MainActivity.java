@@ -80,15 +80,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         View v = LayoutInflater.from(this).inflate(R.layout.layout_sv_btn, showcaseView,false);
         Button svEndBtn = (Button)v.findViewById(R.id.sv_test_btn) ;
         // 初始化ShowcaseView
-        showcaseView = new ShowcaseView.Builder(this)
-//                .withMaterialShowcase()
-                .setTarget(new ViewTarget(toolbar))
-                .setOnClickListener(this)
-                .setStyle(R.style.CustomShowcaseTheme3)
-//                .replaceEndButton(svEndBtn)
-                .build();
-        showcaseView.setButtonText("下一步");
-        showcaseView.setContentText("ShowcaseView 引导页");
+//        showcaseView = new ShowcaseView.Builder(this)
+////                .withMaterialShowcase()
+//                .setTarget(new ViewTarget(toolbar))
+//                .setOnClickListener(this)
+//                .setStyle(R.style.CustomShowcaseTheme3)
+////                .replaceEndButton(svEndBtn)
+//                .build();
+//        showcaseView.setButtonText("下一步");
+//        showcaseView.setContentText("ShowcaseView 引导页");
     }
 
     private void initData(){
