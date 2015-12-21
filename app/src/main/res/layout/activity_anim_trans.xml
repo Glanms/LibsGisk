@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_normal_title" />
+    <include android:id="@+id/title_layout" layout="@layout/layout_normal_title" />
 
     <LinearLayout
         android:id="@+id/layout_content"
@@ -16,17 +17,20 @@
         <TextView
             android:id="@+id/type_over_actAnim"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:text="@string/title_type_over_animAct"
             style="@style/item_text_animAct"/>
         <TextView
             android:id="@+id/type_manage_actAnim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/title_type_manage_animAct"
             style="@style/item_text_animAct"/>
         <TextView
             android:id="@+id/type_pre_actAnim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/title_type_pre_animAct"
             style="@style/item_text_animAct"
             />
 

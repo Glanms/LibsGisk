@@ -7,7 +7,7 @@
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
-        <item name="android:background">@color/btn_item_libs</item>
+        <item name="android:background">@drawable/btn_item_libs</item>
     </style>
 
     <style name="dialog_animAct" parent="AlertDialog.AppCompat.Light">

@@ -14,12 +14,14 @@
 
     <string-array name="labels_main">
         <item>语言切换</item>
+        <item>Activity过场动画</item>
         <item>RecyclerView 使用</item>
         <item>BroadcastReceiver</item>
         <item>Service</item>
         <item>Widget</item>
         <item>Animation</item>
         <item>Dialog</item>
+
     </string-array>
 
     <string-array name="labels_rv">

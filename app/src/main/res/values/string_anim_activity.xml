@@ -3,6 +3,8 @@
 
     <string name="title_anim_activity">Activity Transition Animation</string>
     <string name="desc_anim_activity">Activity过渡动画总结，目前有overridePendingTransition和TransitionManager&lt;API &gt;19 &gt;以及addOnPreDrawListener实现</string>
+    <string name="label_anim_act">Activity过渡动画</string>
+    <string name="label_anim_act_test">测试Activity</string>
 
     <string name="title_type_over_animAct">overridePendingTransition</string>
     <string name="title_type_manage_animAct">TransitionManage(API&gt;19)</string>

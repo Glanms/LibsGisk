@@ -104,10 +104,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         CommonUtils.turnToActivity(MainActivity.this,LanguageConfigActivity.class);
                         break;
                     case 1:
+                        CommonUtils.turnToActivity(MainActivity.this,AnimTransActivity.class);
                         break;
                     case 2:
                         break;
                     case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
                         break;
                 }
             }

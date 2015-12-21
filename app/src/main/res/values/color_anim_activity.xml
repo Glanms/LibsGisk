@@ -2,4 +2,7 @@
 <resources>
     <color name="item_title_animAct">#ce1d1a1a</color>
     <color name="text_btn_trans">#2a4cbc</color>
+
+    <color name="bg_btn_trans_normal">#6caed1</color>
+    <color name="bg_btn_trans_click">#3685af</color>
 </resources>
