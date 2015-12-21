@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_anim_activity">Activity Transition Animation</string>
+    <string name="desc_anim_activity">Activity过渡动画总结，目前有overridePendingTransition和TransitionManager&lt;API &gt;19 &gt;以及addOnPreDrawListener实现</string>
+
+    <string name="title_type_over_animAct">overridePendingTransition</string>
+    <string name="title_type_manage_animAct">TransitionManage(API&gt;19)</string>
+    <string name="title_type_pre_animAct">onPreDrawListener</string>
+
+    <string-array name="items_over">
+        <item>左出右入</item>
+        <item>右入左出</item>
+        <item>上入下出</item>
+        <item>下入上出</item>
+        <item>淡入淡出</item>
+        <item>放缩出入</item>
+    </string-array>
+
+    <string-array name="items_manage">
+        <item>左出右入</item>
+        <item>右入左出</item>
+        <item>上入下出</item>
+        <item>下入上出</item>
+        <item>淡入淡出</item>
+        <item>放缩出入</item>
+    </string-array>
+
+    <string-array name="items_pre_draw">
+        <item>左出右入</item>
+        <item>右入左出</item>
+        <item>上入下出</item>
+        <item>下入上出</item>
+        <item>淡入淡出</item>
+        <item>放缩出入</item>
+    </string-array>
+</resources>

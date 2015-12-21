@@ -15,13 +15,13 @@
             android:id="@+id/label_title_part"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="6dp"
-            android:textStyle="bold"
-            android:text="Title"/>
+            style="@style/label_title_normal_instruction"
+            android:text="Title:"/>
         <TextView
             android:id="@+id/tv_title_part"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/title_normal_instruction"
             tools:text="title"/>
     </LinearLayout>
     <LinearLayout
@@ -34,13 +34,13 @@
             android:id="@+id/label_desc_part"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="6dp"
-            android:textStyle="bold"
-            android:text="Desc"/>
+            style="@style/label_title_normal_instruction"
+            android:text="Desc:"/>
         <TextView
             android:id="@+id/tv_desc_part"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/title_normal_instruction"
             tools:text="Description"/>
     </LinearLayout>
 

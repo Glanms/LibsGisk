@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
- <include layout="@layout/layout_normal_title"/>
+    <include layout="@layout/layout_normal_title" />
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/type_over_actAnim"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            style="@style/item_text_animAct"/>
+        <TextView
+            android:id="@+id/type_manage_actAnim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/item_text_animAct"/>
+        <TextView
+            android:id="@+id/type_pre_actAnim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/item_text_animAct"
+            />
+
+        <Button
+            android:id="@+id/btn_trans"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/text_btn_trans"
+            android:textSize="16sp"
+            android:text="跳转"/>
+
+    </LinearLayout>
 
 </LinearLayout>

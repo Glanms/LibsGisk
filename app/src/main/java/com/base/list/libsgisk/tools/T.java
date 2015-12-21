@@ -12,16 +12,7 @@ import android.widget.Toast;
  */
 public class T {
 
-    /**
-     * Show short time notice using LENGTH_SHORT
-     *
-     * @param context
-     * @param notice
-     */
-    public static void showShort(Context context, String notice) {
-        Toast t = Toast.makeText(context, notice, Toast.LENGTH_SHORT);
-        t.show();
-    }
+    private static Toast toast;
 
     /**
      * Show short time notice using LENGTH_SHORT
@@ -29,9 +20,26 @@ public class T {
      * @param context
      * @param notice
      */
+    public static void showShort(Context context, String notice) {
+        if(null == toast)
+        toast= Toast.makeText(context, notice, Toast.LENGTH_SHORT);
+        else
+        toast.setText(notice);
+        toast.show();
+    }
+
+    /**
+     * Show short time notice (@ResId) using LENGTH_SHORT
+     *
+     * @param context
+     * @param notice
+     */
     public static void showShort(Context context, int notice) {
-        Toast t = Toast.makeText(context, notice, Toast.LENGTH_SHORT);
-        t.show();
+        if(null == toast)
+            toast= Toast.makeText(context, notice, Toast.LENGTH_SHORT);
+        else
+            toast.setText(notice);
+        toast.show();
     }
 
     /**
@@ -41,19 +49,25 @@ public class T {
      * @param notice
      */
     public static void showLong(Context context, String notice) {
-        Toast t = Toast.makeText(context, notice, Toast.LENGTH_LONG);
-        t.show();
+        if(null == toast)
+            toast= Toast.makeText(context, notice, Toast.LENGTH_LONG);
+        else
+            toast.setText(notice);
+        toast.show();
     }
 
     /**
-     * Show short time notice using LENGTH_SHORT
+     * Show short time notice(@ResId) using LENGTH_SHORT
      *
      * @param context
      * @param notice
      */
     public static void showLong(Context context, int notice) {
-        Toast t = Toast.makeText(context, notice, Toast.LENGTH_LONG);
-        t.show();
+        if(null == toast)
+            toast= Toast.makeText(context, notice, Toast.LENGTH_LONG);
+        else
+            toast.setText(notice);
+        toast.show();
     }
 
     /**
@@ -64,8 +78,11 @@ public class T {
      * @param duration
      */
     public static void showToastInfo(Context context, String notice, int duration) {
-        Toast t = Toast.makeText(context, notice, duration);
-        t.show();
+        if(null == toast)
+            toast= Toast.makeText(context, notice, duration);
+        else
+            toast.setText(notice);
+        toast.show();
     }
 
     /**
@@ -77,11 +94,25 @@ public class T {
      * @param duration
      */
     public static void showCustomToast(int ResLayout, Context context, String notice, int duration) {
-        Toast t = Toast.makeText(context, notice, duration);
+        if(null == toast)
+            toast= Toast.makeText(context, notice, duration);
+        else
+            toast.setText(notice);
         View toastView = LayoutInflater.from(context).inflate(ResLayout, null);
-        t.setGravity(Gravity.BOTTOM, 0, 15);
-        t.setView(toastView);
-        t.show();
+        toast.setGravity(Gravity.BOTTOM, 0, 15);
+        toast.setView(toastView);
+        toast.show();
+    }
+
+    /**
+     * Hide the current Toast
+     */
+    public static void hideToast()
+    {
+        if (null != toast)
+        {
+            toast.cancel();
+        }
     }
 
 }

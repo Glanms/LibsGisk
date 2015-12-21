@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="item_text_animAct">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/item_title_animAct</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:background">@color/btn_item_libs</item>
+    </style>
+
+    <style name="dialog_animAct" parent="AlertDialog.AppCompat.Light">
+        <item name="android:layout">@layout/abc_alert_dialog_material</item>
+        <item name="listLayout">@layout/abc_select_dialog_material</item>
+        <item name="listItemLayout">@layout/select_dialog_item_material</item>
+        <item name="multiChoiceItemLayout">@layout/select_dialog_multichoice_material</item>
+        <item name="singleChoiceItemLayout">@layout/select_dialog_singlechoice_material</item>
+    </style>
+</resources>
