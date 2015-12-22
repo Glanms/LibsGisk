@@ -100,13 +100,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
-                    case 0:
+                    case 0: // 语言切换
                         CommonUtils.turnToActivity(MainActivity.this,LanguageConfigActivity.class);
                         break;
-                    case 1:
+                    case 1: // Activity过渡动画
                         CommonUtils.turnToActivity(MainActivity.this,AnimTransActivity.class);
                         break;
-                    case 2:
+                    case 2: // Setting Preference使用
+                        CommonUtils.turnToActivity(MainActivity.this,SettingsActivity.class);
                         break;
                     case 3:
                         break;

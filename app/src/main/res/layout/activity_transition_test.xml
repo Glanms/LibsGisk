@@ -3,7 +3,8 @@
     android:id="@+id/root_view_trans"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#c7cf7e">
 
     <TextView
         android:textSize="18sp"

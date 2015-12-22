@@ -29,9 +29,9 @@
     </string-array>
 
     <string-array name="items_pre_draw">
-        <item>左出右入</item>
-        <item>右入左出</item>
-        <item>上入下出</item>
+        <item>上下展开</item>
+        <item>左右展开</item>
+        <item>淡入</item>
         <item>下入上出</item>
         <item>淡入淡出</item>
         <item>放缩出入</item>

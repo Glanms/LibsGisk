@@ -20,20 +20,29 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:textColor="@color/title_main_color"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+        <Button
+            android:id="@+id/btn_yuyan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="语言适配"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/text_default_color"
+            android:background="@drawable/bg_btn_main"/>
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下一个Demo"
+            android:textColor="@color/text_default_color"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_btn_main"/>
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn_yuyan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="语言适配"
-        android:background="@drawable/bg_btn_main"/>
-    <Button
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="下一个Demo"
-        android:background="@drawable/bg_btn_main"/>
     <TextView
         android:id="@+id/main_test"
         android:padding="8dp"

@@ -20,9 +20,9 @@ import butterknife.OnClick;
 public class TransTestActivity extends BaseActivity {
 
     // 跳转动画类型
-    public final static int STYPE_SCALE = 2001;
-    public final static int STYPE_ALPHA = 2002;
-    public final static int STYPE_3 = 2003;
+    public final static int STYPE_SCALE_TOP_BOTTOM = 2001; //center unfold to top and bottom
+    public final static int STYPE_SCALE_LEFT_RIGHT = 2002; //center unfold to left and right
+    public final static int STYPE_ALPHA = 2003;  // alpha animation 0.1f to 1.0f
     public final static int STYPE_4 = 2004;
 
     @Bind(R.id.btn_back_trans_test)
@@ -35,6 +35,8 @@ public class TransTestActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_transition_test);
+        ButterKnife.bind(this);
         //接收上个页面传过来的动画类型
         Intent mIntent = getIntent();
         if (mIntent.getBooleanExtra("preAnimOpen", false) == true) {
@@ -53,9 +55,14 @@ public class TransTestActivity extends BaseActivity {
             }
         }
 
-        setContentView(R.layout.activity_transition_test);
-        ButterKnife.bind(this);
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     @OnClick(R.id.btn_back_trans_test)
@@ -68,13 +75,13 @@ public class TransTestActivity extends BaseActivity {
      */
     private void startRootAnimation(int type) {
         switch (type) {
-            case STYPE_SCALE:
-                scaleAnim();
+            case STYPE_SCALE_TOP_BOTTOM:
+                scaleTBAnim();
                 break;
             case STYPE_ALPHA:
                 alphaAnim();
                 break;
-            case STYPE_3:
+            case STYPE_SCALE_LEFT_RIGHT:
                 break;
             case STYPE_4:
                 break;
@@ -83,7 +90,8 @@ public class TransTestActivity extends BaseActivity {
         }
     }
 
-    private void scaleAnim() {
+    // center to top and bottom
+    private void scaleTBAnim() {
         rootView.setScaleY(0.1f);
         rootView.setPivotY(rootView.getY() + rootView.getHeight() / 2); //中间开始扩展
 

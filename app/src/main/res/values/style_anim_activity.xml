@@ -5,16 +5,22 @@
         <item name="android:textColor">@color/item_title_animAct</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:layout_marginTop">4dp</item>
         <item name="android:background">@drawable/btn_item_libs</item>
     </style>
 
-    <style name="dialog_animAct" parent="AlertDialog.AppCompat.Light">
+    <style name="dialog_animAct" parent="Base.AlertDialog.AppCompat.Light">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>
         <item name="listLayout">@layout/abc_select_dialog_material</item>
         <item name="listItemLayout">@layout/select_dialog_item_material</item>
         <item name="multiChoiceItemLayout">@layout/select_dialog_multichoice_material</item>
         <item name="singleChoiceItemLayout">@layout/select_dialog_singlechoice_material</item>
+        <item name="android:textAppearance">@style/dialog_title_appearance</item>
+    </style>
+
+    <style name="dialog_title_appearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#111</item>
     </style>
 </resources>

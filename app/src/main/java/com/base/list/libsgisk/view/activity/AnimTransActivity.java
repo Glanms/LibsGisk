@@ -13,6 +13,7 @@ import com.base.list.libsgisk.R;
 import com.base.list.libsgisk.tools.T;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -50,6 +51,13 @@ public class AnimTransActivity extends BaseActivity {
         setContentView(R.layout.activity_anim_trans);
         initCommon();
         initView();
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     @Override
@@ -79,6 +87,12 @@ public class AnimTransActivity extends BaseActivity {
 
                     }
                 })
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
                 .create();
         dialog.show();
     }
@@ -92,6 +106,12 @@ public class AnimTransActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mainType = MTYPE_O;
+                    }
+                })
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
                 })
                 .create();
@@ -109,18 +129,24 @@ public class AnimTransActivity extends BaseActivity {
                         mainType = MTYPE_P;
                         switch (which) {
                             case 0:
-                                subType = TransTestActivity.STYPE_SCALE;
+                                subType = TransTestActivity.STYPE_SCALE_TOP_BOTTOM;
                                 break;
                             case 1:
-                                subType = TransTestActivity.STYPE_ALPHA;
+                                subType = TransTestActivity.STYPE_SCALE_LEFT_RIGHT;
                                 break;
                             case 2:
-                                subType = TransTestActivity.STYPE_3;
+                                subType = TransTestActivity.STYPE_ALPHA;
+
                                 break;
                             case 3:
                                 subType = TransTestActivity.STYPE_4;
                                 break;
                         }
+                    }
+                })
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })
@@ -140,6 +166,8 @@ public class AnimTransActivity extends BaseActivity {
             case MTYPE_P:
                 preDrawTransToPage();
                 break;
+            default:
+                T.showShort(AnimTransActivity.this,"先选择一种动画");
         }
     }
 
@@ -163,7 +191,7 @@ public class AnimTransActivity extends BaseActivity {
         Intent intent = new Intent(AnimTransActivity.this, TransTestActivity.class);
         intent.putExtra("preAnimOpen", true);
         intent.putExtra("preDrawAnim", subType);
-        startActivityForResult(intent, 300);
+        startActivity(intent);
     }
 
 }
