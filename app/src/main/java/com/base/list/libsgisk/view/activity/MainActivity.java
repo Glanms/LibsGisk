@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
         });
-        // todo 测试用
+        // todo 测试Crash Handle用
         tvMain = null;
         tvMain.addTextChangedListener(null);
     }

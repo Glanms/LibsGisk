@@ -10,7 +10,6 @@ import android.os.Process;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,8 +21,7 @@ import java.util.Date;
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     private static final String TAG = "CrashHandler";
-    private static final String PATH = Environment.getExternalStorageDirectory().
-            getPath() + "/Libsgisk/log";
+    private static String PATH = null;
     private static final String FILE_HEADER = "crash";
     private static final String FILE_SUFFIX = ".trace";
     private Thread.UncaughtExceptionHandler mDefaultCrashHandler;
@@ -48,7 +46,14 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         mDefaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();
         this.mContext = mcontext.getApplicationContext();
         Thread.setDefaultUncaughtExceptionHandler(this);
+
+//        PATH = mcontext.getExternalFilesDir(null).getPath() + "/Libsgisk/log";
+        // 将文件保存在 /storage/emulated/0/Android/data/com.list.gisk/files/log下，
+        // 外部可以访问，卸载应用时一并删除
+        PATH = FileHelper.getExternalPrivateFilePath(mContext) + "/log";
+
     }
+
 
     /**
      * 程序出现异常在此处捕获并处理，收到的为非应用内捕获的异常
@@ -87,14 +92,17 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      * @param e
      */
     private void dumpCrashInfoToSDCard(Throwable e) {
-//       String crash_desc = e.getMessage();
         File dir = new File(PATH);
         if (!dir.exists())
-            dir.mkdir();
+            dir.mkdirs();
+
+        LogHelper.d(TAG, "目录读取：" + dir.canRead() + "目录写入：" + dir.canWrite());
         long current = System.currentTimeMillis();
         String time = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date(current));
 
-        File format_file = new File(PATH + time + FILE_HEADER + FILE_SUFFIX);
+        File format_file = new File(PATH + "/" + time + FILE_HEADER + FILE_SUFFIX);
+        LogHelper.d(TAG, "Dump Crash 目录：" + format_file.getPath());
+
         try {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(format_file)));
             pw.print(time);
@@ -103,10 +111,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             pw.println();
             e.printStackTrace(pw);
             pw.close();
-        } catch (IOException e1) {
-            LogHelper.e(TAG, "Dump Crash Info failed.");
-        } catch (PackageManager.NameNotFoundException e1) {
-            e1.printStackTrace();
+        } catch (Exception e1) {
+            LogHelper.e(TAG, "Dump Crash Info failed: " + e1.getMessage());
         }
     }
 
