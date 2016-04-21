@@ -36,6 +36,15 @@
             style="@style/item_text_animAct"
             />
         <include layout="@layout/list_divider_grey"/>
+        <!-- ReavalAnim -->
+        <TextView
+            android:id="@+id/type_reaval_actAnim1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_type_reaval_animAct"
+            style="@style/item_text_animAct" />
+
+        <include layout="@layout/list_divider_grey" />
         <Button
             android:id="@+id/btn_trans"
             android:layout_gravity="center"

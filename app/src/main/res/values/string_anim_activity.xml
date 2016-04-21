@@ -9,6 +9,8 @@
     <string name="title_type_over_animAct">overridePendingTransition</string>
     <string name="title_type_manage_animAct">TransitionManage(API&gt;19)</string>
     <string name="title_type_pre_animAct">onPreDrawListener</string>
+    <string name="title_type_reaval_animAct">Reaval 过渡动画</string>
+    <string name="title_type_pop_animAct">onPreDrawListener</string>
 
     <string-array name="items_over">
         <item>左出右入</item>
@@ -36,4 +38,11 @@
         <item>淡入淡出</item>
         <item>放缩出入</item>
     </string-array>
+
+    <!--Reveal Trans Anim-->
+
+    <string name="activity_reveal">RevealAnimActivity</string>
+    <string name="subactivity_name">PictureInfo!</string>
+    <string name="menu_slow_animations">Slow</string>
+
 </resources>

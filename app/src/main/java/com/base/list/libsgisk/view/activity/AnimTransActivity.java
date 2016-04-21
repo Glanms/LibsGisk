@@ -18,7 +18,7 @@ import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2015/12/19.
- * Activity 间的过渡动画整理
+ * Activity 间的过渡动画整理1
  */
 public class AnimTransActivity extends BaseActivity {
 
@@ -28,6 +28,8 @@ public class AnimTransActivity extends BaseActivity {
     TextView btnManageActAnim;
     @Bind(R.id.type_pre_actAnim)
     TextView btnPreActAnim;
+    @Bind(R.id.type_reaval_actAnim1)
+    TextView btnReavalActAnim;
     @Bind(R.id.btn_trans)
     Button btnTrans;
 
@@ -38,9 +40,10 @@ public class AnimTransActivity extends BaseActivity {
     // transition animation sub type
     private int subType = 0;
 
-    private static final int MTYPE_O = 100;
-    private static final int MTYPE_M = 101;
-    private static final int MTYPE_P = 102;
+    private static final int MTYPE_O = 100;  //使用overridePendingTransition定义过渡动画
+    private static final int MTYPE_M = 101;   //使用Transition管理动画
+    private static final int MTYPE_P = 102;   //subActivity的view的preListener简单实现
+    private static final int MTYPE_REAVAL = 103;   //activity到subActivity的reaval动画 1
 
     private int enterAnim;
     private int exitAnim;
@@ -154,17 +157,27 @@ public class AnimTransActivity extends BaseActivity {
         dialog.show();
     }
 
+    @OnClick(R.id.type_reaval_actAnim1)
+    void onClickReavalBtn() {
+        T.showShort(this, "选择Reaval Transition Activity Anim");
+        mainType = MTYPE_REAVAL;
+
+    }
+
     @OnClick(R.id.btn_trans)
     void onClickTransBtn() {
         switch (mainType) {
-            case MTYPE_M:
+            case MTYPE_O:
                 overTransToPage();
                 break;
-            case MTYPE_O:
+            case MTYPE_M:
                 manageTransToPage();
                 break;
             case MTYPE_P:
                 preDrawTransToPage();
+                break;
+            case MTYPE_REAVAL:
+                toReavalTransPage();
                 break;
             default:
                 T.showShort(AnimTransActivity.this,"先选择一种动画");
@@ -179,7 +192,7 @@ public class AnimTransActivity extends BaseActivity {
 
     private void manageTransToPage() {
         Intent intent = new Intent(AnimTransActivity.this, TransTestActivity.class);
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             TransitionManager manager = new TransitionManager();
         } else {
             T.showShort(this, "SDK Version is unsupported.");
@@ -191,6 +204,11 @@ public class AnimTransActivity extends BaseActivity {
         Intent intent = new Intent(AnimTransActivity.this, TransTestActivity.class);
         intent.putExtra("preAnimOpen", true);
         intent.putExtra("preDrawAnim", subType);
+        startActivity(intent);
+    }
+
+    private void toReavalTransPage() {
+        Intent intent = new Intent(AnimTransActivity.this, RevealTransActivity.class);
         startActivity(intent);
     }
 

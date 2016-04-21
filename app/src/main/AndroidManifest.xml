@@ -35,7 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <!--用于动态设定图标-->
         <activity-alias
             android:name=".MainActivity_EN"
             android:enabled="true"
@@ -77,6 +77,15 @@
         <activity
             android:name=".view.activity.TransTestActivity"
             android:label="@string/label_anim_act_test"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.RevealTransActivity"
+            android:label="@string/activity_reveal"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".view.activity.PictureDetailsActivity"
+            android:label="@string/subactivity_name"
+            android:theme="@style/Transparent"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.SettingsActivity"
